@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     GetBooks();
 
+    AddActionOnShowModal($('#addBookModal'), ClearFields);
     AddActionOnShowModal($('#editBookModal'), FillModal);
     AddActionOnShowModal($('#deleteBookModal'), (e, form) => {
         var id = $(e.relatedTarget).data('id');
@@ -81,6 +82,15 @@ function AddOrUpdate(button, form, requestFunction) {
     button.on('click', (e) => {
         requestFunction(currentEntity, GetBookValues(form));
         e.preventDefault();
+    });
+}
+
+function ClearFields(event, form) {
+    SetBookValues(form, {
+        title: '',
+        authorName: '',
+        releaseDate: '',
+        price: ''
     });
 }
 
